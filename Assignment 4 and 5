@@ -5,11 +5,11 @@ Assignment 4 and 5
 - [ ] 4.4.5 Section Review, Questions 4,5
 - [ ] 4.10 Programming Exercises, Question 7
 
-
 - [ ] Upload your assignment to GitHub
 - [ ] Email james.wilson@rccd.edu with the url to the source code on GitHub	
 
 ***  23 points (13 for the first 13 questions and 10 for 4.10) ***
+
 
 
 4.2.8 Section Review
@@ -25,12 +25,14 @@ mov ax,7FF0h
 add 	al,10h	 ; a. CF =1 SF =0 ZF =1 OF =0
 add	 ah,1	 ; b. CF =0 SF =1 ZF =0 OF =1
 add	 ax,2	 ; c. CF =0 SF =1 ZF =0 OF =0
+
 4.3.8 Section Review
 1. False
 2. False
 3. True
 4. False
 5. True
+
 4.4.5 Section Review
 4. True
 5.
@@ -44,6 +46,7 @@ mov edx,[myDoubles + edi]   ; d. EDX = 3
 mov edx,myDoubles[edi] 	 ; e. EDX = 3
 mov ebx,myPointer
 mov eax,[ebx+4] 		 ; f. EAX = 2
+
 4.10 Programming Exercises
 Programming Exercise # 7
 
