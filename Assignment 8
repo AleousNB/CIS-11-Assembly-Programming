@@ -1,0 +1,24 @@
+Brian Nguyen
+                                Assignment 8
+- [ ] Convert this variable to decimal: DWORD  1111 1111 1111 1111 1111 1111 1111 1110b
+- [ ] Convert this variable to decimal: SDWORD 1111 1111 1111 1111 1111 1111 1111 1110b
+- [ ] Convert this variable to decimal: DWORD  0000 0000 0000 0000 0000 0000 1111 1110b
+- [ ] Convert this variable to decimal: SDWORD 0000 0000 0000 0000 0000 0000 1111 1110b
+- [ ] Submit this assignment by 4/3/2018 for extra credit	
+
+
+- [ ] Upload your assignment to GitHub
+- [ ] Email james.wilson@rccd.edu with the url to the source code on GitHub	
+
+*** 4 points (1 per question) + 5 points for extra credit  ***
+
+
+
+
+DWORD  1111 1111 1111 1111 1111 1111 1111 1110b = 		4294967294 decimal
+
+SDWORD 1111 1111 1111 1111 1111 1111 1111 1110b = 		-2 decimal
+
+DWORD  0000 0000 0000 0000 0000 0000 1111 1110b =		254 decimal
+
+SDWORD 0000 0000 0000 0000 0000 0000 1111 1110b = 		+254 decimal
