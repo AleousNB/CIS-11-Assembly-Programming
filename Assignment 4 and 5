@@ -1,0 +1,78 @@
+Brian Nguyen
+Assignment 4 and 5
+- [ ] 4.2.8 Section Review, Questions 1, 2, 3, 4, 5, 6	
+- [ ] 4.3.8 Section Review, Questions 1,2,3,4,5
+- [ ] 4.4.5 Section Review, Questions 4,5
+- [ ] 4.10 Programming Exercises, Question 7
+
+
+- [ ] Upload your assignment to GitHub
+- [ ] Email james.wilson@rccd.edu with the url to the source code on GitHub	
+
+***  23 points (13 for the first 13 questions and 10 for 4.10) ***
+
+
+4.2.8 Section Review
+1. inc val2
+2. sub eax,val3
+3. 
+mov ax,val4
+sub val2,ax
+4. The carry flag would be 0 and the sign flag 1.
+5. The overflow flag would be 1 and the sign flag 1;
+6.
+mov ax,7FF0h
+add 	al,10h	 ; a. CF =1 SF =0 ZF =1 OF =0
+add	 ah,1	 ; b. CF =0 SF =1 ZF =0 OF =1
+add	 ax,2	 ; c. CF =0 SF =1 ZF =0 OF =0
+4.3.8 Section Review
+1. False
+2. False
+3. True
+4. False
+5. True
+4.4.5 Section Review
+4. True
+5.
+mov esi,OFFSET myBytes
+mov al,[esi] 			 ; a. AL = 10h
+mov al,[esi+3] 		 ; b. AL = 40h
+mov esi,OFFSET myWords + 2
+mov ax,[esi] 			 ; c. AX = 003Bh
+mov edi,8
+mov edx,[myDoubles + edi]   ; d. EDX = 3
+mov edx,myDoubles[edi] 	 ; e. EDX = 3
+mov ebx,myPointer
+mov eax,[ebx+4] 		 ; f. EAX = 2
+4.10 Programming Exercises
+Programming Exercise # 7
+
+
+
+
+
+
+;4.10 programing problem 7 copying a string in reverse order
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto,dwExitCode:dword
+
+.data
+	source BYTE "This is the source string",0
+	target BYTE SIZEOF source DUP('#')
+.code
+main proc
+
+	mov ecx, SIZEOF source
+	mov esi,0
+		L1:
+			mov al,source[ecx-1]
+			mov target[esi], al
+			add esi, TYPE source
+		loop L1
+
+	invoke ExitProcess,0
+main endp
+end main
