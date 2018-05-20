@@ -48,11 +48,11 @@ L1:
 	call NEAR PTR [ebx +4]			;add 4 since procedure is 4 bytes away from lookup value	
 	jmp L3
 L2:
-	add ebx,8						;add 8 since each lookupvalue/proc set is 8 bytes away from each other
+	add ebx,8				;add 8 since each lookupvalue/proc set is 8 bytes away from each other
 	loop L1
 L3:
 	call Crlf
-	call WaitMsg					;pause untill key pressed
+	call WaitMsg				;pause untill key pressed
 	invoke ExitProcess,0
 main endp
 
@@ -88,14 +88,14 @@ AndCalc PROC USES eax ebx ecx edx
 	mov edx,OFFSET promptX
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ebx,eax					;left operand value will be stored in ebx
+	mov ebx,eax				;left operand value will be stored in ebx
 	
 	mov edx,OFFSET promptY
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ecx,eax					;right operand value will be stored in ecx
+	mov ecx,eax				;right operand value will be stored in ecx
 
-	and ebx,ecx					;and instruction
+	and ebx,ecx				;and instruction
 	mov edx, OFFSET result
 	call WriteString
 	mov eax,ebx
@@ -112,14 +112,14 @@ OrCalc PROC USES eax ebx ecx edx
 	mov edx,OFFSET promptX
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ebx,eax					;left operand value will be stored in ebx
+	mov ebx,eax				;left operand value will be stored in ebx
 	
 	mov edx,OFFSET promptY
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ecx,eax					;right operand value will be stored in ecx
+	mov ecx,eax				;right operand value will be stored in ecx
 
-	or ebx,ecx					;or instruction
+	or ebx,ecx				;or instruction
 	mov edx, OFFSET result
 	call WriteString
 	mov eax,ebx
@@ -136,9 +136,9 @@ NotCalc PROC USES eax ebx ecx edx
 	mov edx,OFFSET promptX
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ebx,eax					;move value to ebx
+	mov ebx,eax				;move value to ebx
 
-	not ebx						;not instruction
+	not ebx					;not instruction
 	mov edx, OFFSET result
 	call WriteString
 	mov eax,ebx
@@ -155,14 +155,14 @@ XorCalc PROC USES eax ebx ecx edx
 	mov edx,OFFSET promptX
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ebx,eax					;left operand value will be stored in ebx
+	mov ebx,eax				;left operand value will be stored in ebx
 	
 	mov edx,OFFSET promptY
 	call WriteString
 	call ReadHex				;ReadHex returns value stored in eax
-	mov ecx,eax					;right operand value will be stored in ecx
+	mov ecx,eax				;right operand value will be stored in ecx
 
-	xor ebx,ecx					;xor instruction
+	xor ebx,ecx				;xor instruction
 	mov edx, OFFSET result
 	call WriteString
 	mov eax,ebx
