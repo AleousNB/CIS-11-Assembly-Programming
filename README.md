@@ -1,2 +1,2 @@
 # CIS-11-Assembly-Programming
-Assignments for CIS 11
+Homework Assignments for CIS-11
