@@ -15,15 +15,15 @@ ExitProcess proto,dwExitCode:dword
 main proc
 	mov esi,OFFSET array
 	mov ecx,LENGTHOF array
-	mov eax,0					;0 temporarily placed in first element due to exchange
+	mov eax,0			;0 temporarily placed in first element due to exchange
 L1:
-	xchg [esi],eax				;exchange values of element and eax
+	xchg [esi],eax			;exchange values of element and eax
 	add esi, TYPE DWORD
 	loop L1
 
 	mov esi,OFFSET array		;set pointer to first element again
-	mov [esi],eax				;eax will be holding value of last element from last iteration
-								;so can replace first element with eax
+	mov [esi],eax			;eax will be holding value of last element from last iteration
+					;so can replace first element with eax
 
 	invoke ExitProcess,0
 main endp
