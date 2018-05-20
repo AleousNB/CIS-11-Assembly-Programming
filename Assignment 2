@@ -1,0 +1,27 @@
+Brian Nguyen
+Assignment 2
+2.1.5 Section Review
+1. In addition to the registers the CPU contains the arithmetic logic unit, the control unit and the clock.
+2. The CPU is connected to the rest of the computer by three busses: I/O data, control and address.
+3. Memory access takes more cycles than register access because a register is accessed in one cycle while the memory access takes multiple cycles: placing the address of the value into the address bus, changing the value of the processor’s read pin, waiting for the memory chip to respond and copying the data from the data bus into the operand.
+4. The three basic steps of the instruction execution cycle are fetch, decode and execute.
+5. When memory operand is used the instruction execution cycle also includes fetching the operand from the memory and registers and then the CPU has to store the result of the execution into the output operand.
+2.4.3 Section Review
+5. The 8259A PIC controller is a support processor which upon receiving external interrupts from hardware devices such as the keyboard, system clock or disk drives interrupt the CPU and makes it process their requests immediately.
+2.5.2 Section Review
+1. Of the four levels of input/output in a computer system the most universal and portable is the level with high level language functions.
+3. Even though BIOS already has code that communicates with the computer hardware device drivers are still necessary since they are able to access the hardware directly and through its use you are able to access the hardware’s special features.
+4. In the example of displaying a string the level that exists between the OS and the video card controller is level 2 where the OS calls upon a BIOS subroutine.
+5. The BIOS for two computers with different operating systems would most likely be different since BIOS does not depend on the OS, but on the hardware.
+
+2.8 Review Question
+7. Floating-Point Unit preforms floating- point arithmetic in the CPU.
+8. On a 32-bit processor each floating-point data register has 80 bits.
+9. TRUE
+10. FALSE
+12. FALSE
+19. FALSE
+20. FALSE
+25. Assembly language can manipulate input/ output from levels 0 to 3: from the hardware to the application program.
+26. Game programs often send their sound output directly to the sound card’s hardware ports because doing this will take advantage of the hardware’s special features in addition to reducing waste in memory and overall more control of how the program runs compared to sending it to any other level.
+
