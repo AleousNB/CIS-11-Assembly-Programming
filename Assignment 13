@@ -10,12 +10,12 @@ WaitMsg proto
 Crlf proto
 
 .data
-	rangeDec QWORD 1												;var rangeDec shortens each L1 iteration since end numbers
+	rangeDec QWORD 1						;var rangeDec shortens each L1 iteration since end numbers
 	array QWORD 7,10,4,7,8,11,232,4,6,4,3,2,5,7,4,43,221,123,3,5	;will be the highest and don't have to be compared for swap
 
 .code
 main proc
-	mov rcx,LENGTHOF array		;first print of array
+	mov rcx,LENGTHOF array			;first print of array
 	mov rsi,OFFSET array
 printLoop1:
 	mov rax,[rsi]
@@ -24,9 +24,9 @@ printLoop1:
 	loop printLoop1
 	call Crlf
 
-	mov rcx,LENGTHOF array-1	;1st loop runs the number of elements in array minus one
+	mov rcx,LENGTHOF array-1		;1st loop runs the number of elements in array minus one
 L1:
-	push rcx					;save rcx on stack for counter of outer L1 loop
+	push rcx				;save rcx on stack for counter of outer L1 loop
 	mov rcx,LENGTHOF array			
 	sub rcx,rangeDec			;Each inner L2 iteration will be shorter be one more element
 	mov rsi,OFFSET array
@@ -41,7 +41,7 @@ IncPoint:
 	add rsi,TYPE QWORD
 	loop L2
 	add rangeDec,1
-	pop rcx						;get rcx value back for counter of L1 loop
+	pop rcx				;get rcx value back for counter of L1 loop
 	loop L1
 
 	mov rcx,LENGTHOF array		;second print of array
