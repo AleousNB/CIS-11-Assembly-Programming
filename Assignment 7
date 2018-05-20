@@ -1,0 +1,181 @@
+;Boolean Calculator
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto,dwExitCode:dword
+WriteString proto
+ReadInt proto
+ReadHex proto
+WriteHex proto
+Crlf proto
+Clrscr proto
+WaitMsg proto
+
+.data
+CaseTable	DWORD	1
+			DWORD	AndCalc
+			DWORD	2
+			DWORD	OrCalc
+			DWORD	3
+			DWORD	NotCalc
+			DWORD	4
+			DWORD	XorCalc
+			DWORD	5
+			DWORD	ExitFunc
+NumberOfEntries = 5
+
+prompt  BYTE "Press 1,2,3,4 or 5: ",0
+promptX BYTE "Enter the hecidecimal value for x ",0
+promptY BYTE "Enter the hecidecimal value for y ",0
+result  BYTE "The hexidecimal result of the operation is  ",0
+msg1 BYTE "1. x AND y ",0
+msg2 BYTE "2. x OR y ",0
+msg3 BYTE "3. NOT x ",0
+msg4 BYTE "4. x XOR y ",0
+msg5 BYTE "5. Exit program ",0
+
+.code
+main proc
+	call printMenu
+	call ReadInt
+	call clrscr				
+	mov ebx,OFFSET CaseTable
+	mov ecx,NumberOfEntries
+L1:
+	cmp eax,[ebx]
+	jne L2
+	call NEAR PTR [ebx +4]			;add 4 since procedure is 4 bytes away from lookup value	
+	jmp L3
+L2:
+	add ebx,8						;add 8 since each lookupvalue/proc set is 8 bytes away from each other
+	loop L1
+L3:
+	call Crlf
+	call WaitMsg					;pause untill key pressed
+	invoke ExitProcess,0
+main endp
+
+
+printMenu PROC USES edx
+	mov edx,OFFSET prompt
+	call WriteString
+	call crlf
+	mov edx,OFFSET msg1
+	call WriteString
+	call crlf
+	mov edx,OFFSET msg2
+	call WriteString
+	call crlf
+	mov edx,OFFSET msg3
+	call WriteString
+	call crlf
+	mov edx,OFFSET msg4
+	call WriteString
+	call crlf
+	mov edx,OFFSET msg5
+	call WriteString
+	call crlf
+	ret
+printMenu ENDP
+	
+
+AndCalc PROC USES eax ebx ecx edx
+	mov edx,OFFSET msg1
+	call WriteString
+	call Crlf
+	
+	mov edx,OFFSET promptX
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ebx,eax					;left operand value will be stored in ebx
+	
+	mov edx,OFFSET promptY
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ecx,eax					;right operand value will be stored in ecx
+
+	and ebx,ecx					;and instruction
+	mov edx, OFFSET result
+	call WriteString
+	mov eax,ebx
+	call WriteHex
+	ret
+AndCalc ENDP
+
+
+OrCalc PROC USES eax ebx ecx edx
+	mov edx,OFFSET msg2
+	call WriteString
+	call Crlf
+
+	mov edx,OFFSET promptX
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ebx,eax					;left operand value will be stored in ebx
+	
+	mov edx,OFFSET promptY
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ecx,eax					;right operand value will be stored in ecx
+
+	or ebx,ecx					;or instruction
+	mov edx, OFFSET result
+	call WriteString
+	mov eax,ebx
+	call WriteHex
+	ret
+OrCalc ENDP
+
+
+NotCalc PROC USES eax ebx ecx edx
+	mov edx,OFFSET msg3
+	call WriteString
+	call Crlf
+	
+	mov edx,OFFSET promptX
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ebx,eax					;move value to ebx
+
+	not ebx						;not instruction
+	mov edx, OFFSET result
+	call WriteString
+	mov eax,ebx
+	call WriteHex
+	ret
+NotCalc	ENDP
+
+
+XorCalc PROC USES eax ebx ecx edx
+	mov edx,OFFSET msg4
+	call WriteString
+	call Crlf
+
+	mov edx,OFFSET promptX
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ebx,eax					;left operand value will be stored in ebx
+	
+	mov edx,OFFSET promptY
+	call WriteString
+	call ReadHex				;ReadHex returns value stored in eax
+	mov ecx,eax					;right operand value will be stored in ecx
+
+	xor ebx,ecx					;xor instruction
+	mov edx, OFFSET result
+	call WriteString
+	mov eax,ebx
+	call WriteHex
+	ret
+XorCalc ENDP
+
+
+ExitFunc PROC
+	mov edx,OFFSET msg5
+	call WriteString
+	call Crlf
+	ret
+ExitFunc ENDP
+
+end main
