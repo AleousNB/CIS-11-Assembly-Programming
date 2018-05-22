@@ -27,9 +27,9 @@ main proc
 	mov esi,OFFSET array
 	mov ecx,LENGTHOF array/2		
 L1:
-	mov eax,[esi]					;save 1st element of pair
+	mov eax,[esi]				;save 1st element of pair
 	mov ebx,[esi +TYPE DWORD]		;save 2nd element of pair
-	mov [esi], ebx					;give saved 2nd element of pair to first position
+	mov [esi], ebx				;give saved 2nd element of pair to first position
 	mov [esi +TYPE DWORD], eax		;give saved 1st element of pair to second position
 	add esi, 2*TYPE DWORD			;move pointer to first element of next pair
 	loop L1
