@@ -59,8 +59,10 @@ which is typical of assembly having less strict rules for what can be done.
 13. bArray BYTE 20 DUP(0)
 
 3.10 Programming Exercises
-Programming Exercise #1
-
+;Programming Exercise #1
+;Using the AddTwo program from Section 3.2 as a reference, write
+; a program that calculates the following expresson, using registers:
+; A = (A+B) - (C+D). Assign Integer Values to EAX, EBX, ECX AND EDX registers.
 
 .386
 .model flat,stdcall
