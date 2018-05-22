@@ -72,9 +72,12 @@ end main
 .model flat,stdcall
 .stack 4096
 ExitProcess proto,dwExitCode:dword
+WriteDec proto
+WaitMsg proto
+Crlf proto
 
 .data
-	array DWORD ?
+	array DWORD 47 DUP(0)
 
 .code
 main proc
@@ -82,9 +85,14 @@ main proc
 	mov ecx,47
 	call Fibo
 
+	mov esi, OFFSET array		;print fibonacci array
+	mov ecx, LENGTHOF array
+	call printArray
+
+	call WaitMsg
+
 	invoke ExitProcess,0
 main endp
-
 
 Fibo PROC USES esi ecx edx
 	;Fibo can generate for array of length 2 or greater
@@ -107,5 +115,14 @@ Fibo PROC USES esi ecx edx
 	ret
 Fibo ENDP
 
+printArray PROC USES esi ecx eax
+printLoop:
+	mov eax, [esi]
+	call WriteDec
+	call Crlf
+	add esi,TYPE DWORD
+	loop printLoop
+	ret
+printArray  ENDP
 
 end main
