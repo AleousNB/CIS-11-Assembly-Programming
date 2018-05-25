@@ -6,36 +6,31 @@
 
 ExitProcess proto
 WriteInt64 proto
-WaitMsg proto
+ReadString proto
 Crlf proto
 
 .data
-	rangeDec QWORD 1						;var rangeDec shortens each L2 iteration since end numbers
+	rangeDec QWORD 1						;var rangeDec shortens each L1 iteration since end numbers
 	array QWORD 7,10,4,7,8,11,232,4,6,4,3,2,5,7,4,43,221,123,3,5	;will be the highest and don't have to be compared for swap
 
 .code
 main proc
-	mov rcx,LENGTHOF array			;first print of array
+	mov rcx,LENGTHOF array		;first print of array
 	mov rsi,OFFSET array
-printLoop1:
-	mov rax,[rsi]
-	add rsi,TYPE QWORD
-	call WriteInt64
-	loop printLoop1
-	call Crlf
+	call printArray
 
-	mov rcx,LENGTHOF array-1		;1st loop runs the number of elements in array minus one
+	mov rcx,LENGTHOF array-1	;1st loop runs the number of elements in array minus one
 L1:
-	push rcx				;save rcx on stack for counter of outer L1 loop
+	push rcx			;save rcx on stack for counter of outer L1 loop
 	mov rcx,LENGTHOF array			
-	sub rcx,rangeDec			;Each inner L2 iteration will be shorter be one more element
+	sub rcx,rangeDec		;Each inner L2 iteration will be shorter be one more element
 	mov rsi,OFFSET array
 L2:
 	mov rax,[rsi]
 	mov rbx,[rsi + TYPE QWORD]
 	cmp rax,rbx
-	jng IncPoint				;if the 1st element looked at is not greater than, skip to incrementing pointer.
-	mov [rsi],rbx				;otherwise if it is greater then 2nd, swap values with 2nd element
+	jng IncPoint			;if the 1st element looked at is not greater than, skip to incrementing pointer.
+	mov [rsi],rbx			;otherwise if it is greater then 2nd, swap values with 2nd element
 	mov [rsi + TYPE QWORD],rax
 IncPoint:
 	add rsi,TYPE QWORD
@@ -46,12 +41,21 @@ IncPoint:
 
 	mov rcx,LENGTHOF array		;second print of array
 	mov rsi,OFFSET array
-printLoop2:
+	call printArray
+	
+	call ReadString			;64bit has no WaitMsg so use ReadString to pause program
+
+    call ExitProcess
+main endp
+
+printArray PROC USES rax rsi rcx
+printLoop:
 	mov rax,[rsi]
 	add rsi,TYPE QWORD
 	call WriteInt64
-	loop printLoop2
-	
-    call ExitProcess
-main endp
+	loop printLoop
+	call Crlf
+	ret
+printArray ENDP
+
 end
