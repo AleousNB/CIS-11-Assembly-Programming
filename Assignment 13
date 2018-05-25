@@ -10,7 +10,7 @@ ReadString proto
 Crlf proto
 
 .data
-	rangeDec QWORD 1						;var rangeDec shortens each L1 iteration since end numbers
+	rangeDec QWORD 1						;var rangeDec shortens each L2 iteration since end numbers
 	array QWORD 7,10,4,7,8,11,232,4,6,4,3,2,5,7,4,43,221,123,3,5	;will be the highest and don't have to be compared for swap
 
 .code
